@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProjectManagementSystem2.Models.Project>
+
+@{
+    ViewBag.Title = "ManagerDashboard";
+}
+
+<h2>ManagerDashboard</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletionStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompletionStatus)
+        </td>
+       
+        <td>
+            @foreach(var task in item.Tasks)
+            {
+                <div> @task.TaskName</div>
+                foreach(var developer in task.Developers)
+                {
+                    <div>Developers:</div>
+                    <div>@developer.UserName</div>
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
